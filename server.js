@@ -21,10 +21,12 @@ io.on('connection', function (socket) {
     // System message
     // timestamp property - JavaScript timestamp (milliseconds)
     socket.emit('message', {
+        name: 'System',
         text: 'Welcome to the chat application',
         timestamp: moment().valueOf()
-    })
+    });
 });
+
 
 http.listen(PORT, function () {
     console.log('Server started!');
