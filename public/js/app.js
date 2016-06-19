@@ -6,9 +6,14 @@ var socket = io();
 
 socket.on('connect', function() {
     console.log("Connected to socket.io server!");
-    console.log("Name:" + name);
-    console.log("Room: ", room);
+    socket.emit('joinRoom', {
+        name: name,
+        room: room
+    });
 });
+
+// update h1 tag
+jQuery('.room-title').text(room);
 
 socket.on('message', function (message) {
     var momentTimestamp = moment.utc(message.timestamp);
