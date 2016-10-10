@@ -1,4 +1,7 @@
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.OPENSHIFT_NODEJS_PORT || 3002;
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+ 
+
 var express = require('express');
 var moment = require('moment');
 var app = express();
@@ -20,7 +23,7 @@ function sendCurrentUsers(socket) {
 
     Object.keys(clientInfo).forEach(function (socketId) {
         var userInfo = clientInfo[socketId];
-        
+        d 
         if (info.room === userInfo.room) {
             users.push(userInfo.name);
         }
@@ -84,5 +87,5 @@ io.on('connection', function (socket) {
 
 
 http.listen(PORT, function () {
-    console.log('Server started!');
+    console.log( "Server started on " + server_ip_address + ", port " + PORT );
 })
